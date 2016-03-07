@@ -1,0 +1,110 @@
+public class TwelveTone {
+  public static void main(String[] args) {
+    String[] toneRow = {"a-", "b-", "a-", "c-", "d-", "e-", "f-", "g-","bb", "ab", "gb", "b-", "eb", "db", "b-"};
+    
+    printArray(convertArray(inputNotes(args[0])));
+    printSArray(inputNotes(args[0]));
+    System.out.println(isThereToneRow(convertArray(inputNotes(args[0]))));
+    
+    printArray(convertArray(toneRow));
+    System.out.println(isThereToneRow(convertArray(toneRow)));
+    
+    
+  }
+  
+  public static String[] inputNotes(String a) {
+    String[] notes = new String[(a.length())/2];
+    for (int i = 0; i < notes.length; i++) {
+      notes[i] = String.valueOf(a.charAt(i*2)) + String.valueOf(a.charAt(i*2+1)); 
+     // notes[i] = a.substring(i,i+1);
+      //i++;
+    }
+    return notes;
+  }
+  
+  
+  public static boolean isThereToneRow(int[] a) {
+    int[] currentRow = new int[12];
+    for (int i = 0; i < a.length - 11; i++) {
+      for (int j = 0; j < 12; j++) {
+        currentRow[j] = a[j+i];
+      }
+      if (allToneRow(currentRow)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  
+  public static boolean allToneRow(int[] a) {
+    if (a.length < 12) {
+      return false;
+    }
+    for (int i = 0; i < 12; i++) {
+      for (int j = 0; j < 12; j++) {
+        if (i != j) {
+          if (a[i] == a[j]) {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  }
+  
+  public static int[] convertArray(String[] s) {
+    int[] result = new int[s.length];
+    for (int i = 0; i < result.length; i++) {
+      result[i] = convertNote(s[i]);
+    }
+    return result;
+  }
+  
+  public static int convertNote(String a) {
+    int x = 0;
+    if (a == "c-") {
+      x = 1;
+    } else if (a == "db") {
+      x = 2;
+    } else if (a == "d-") {
+      x = 3;
+    } else if (a == "eb") {
+      x = 4;
+    } else if (a == "e-") {
+      x = 5;
+    } else if (a == "f-") {
+      x = 6;
+    } else if (a == "gb") {
+      x = 7;
+    } else if (a == "g-") {
+      x = 8;
+    } else if (a == "ab") {
+      x = 9;
+    } else if (a == "a-") {
+      x = 10;
+    } else if (a == "bb") {
+      x = 11;
+    } else if (a == "b-") {
+      x = 12;
+    }
+    return x;
+  }
+  
+  public static void printArray(int[] x) {
+    for (int i = 0; i < x.length; i++) {
+      System.out.print(x[i] + " ");
+    }
+    System.out.println();
+  }
+  
+    public static void printSArray(String[] x) {
+    for (int i = 0; i < x.length; i++) {
+      System.out.print(x[i] + " ");
+    }
+    System.out.println();
+  }
+  
+  
+}
+
