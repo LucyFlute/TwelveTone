@@ -1,5 +1,5 @@
 import java.util.Scanner;
-//two dimemsional array?
+
 
 public class TwelveTone {
   public static void main(String[] args) {
